@@ -18,9 +18,22 @@
             <p style="text-align:center"><strong>Billable Time :&nbsp; <input type="time" id="billabletime" name="billabletime"></strong></p>
             <p style="text-align:center"><strong>Productivity (%):&nbsp;<input type="productivity" id="productivity" name="productivity" min="1" max="100"></strong></p>
             <p style="text-align:center">&nbsp;</p>
-            <p style="text-align:center"><strong>Calculate</strong></p>
+            <p style="text-align:center"><button type="button" onclick="reset()">Reset</button>&nbsp;&nbsp;&nbsp;<strong><button type="button" onclick="calculate()">Calculate</button></strong></p>
             <p style="text-align:center">&nbsp;</p>
         </div>    
     </main>
+    <script>
+
+         function reset() {
+            alert('Reset!')
+         } 
+         
+         function calculate() {
+            alert('Calculate!')
+         } 
+
+    </script>
+
+
   </body>
 </html>
