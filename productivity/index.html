@@ -45,24 +45,24 @@
          
          function calculate() {
 
-            const entrydate = document.querySelector('input[name="entrytime"]').value;
-            //const totaltime = document.querySelector('input[name="totaltime"]').value;
+            const entrydatetime = new Date(document.querySelector('input[name="entrydatetime"]').value).toISOString();
+            var totaltime = document.querySelector('input[name="totaltime"]').value.split(':');
             const savetime = document.querySelector('input[name="savetime"]').value;
 
             //var entrytime = $('#entrytime').val().split(':');
-            var totaltime = $('#totaltime').val().split(':');
+            //var totaltime = $('#totaltime').val().split(':');
 
-            alert(entrydate);
+            alert(entrydatetime);
 
             alert(totaltime);
 
             alert(savetime);
 
 
-            var entryDateValue = dayjs(entrydate);
+            var entryDateTimeValue = dayjs(entrydatetime);
             //var totaltimeValue = dayjs(totaltime, "HH:mm");
 
-            alert(entryDateValue);
+            alert(entryDateTimeValue);
             //alert(totaltimeValue);
             
             
