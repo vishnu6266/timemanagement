@@ -50,12 +50,20 @@
             const totaltime = document.querySelector('input[name="totaltime"]').value;
             const savetime = document.querySelector('input[name="savetime"]').value;
 
+
             alert(entrydate);
 
             alert(totaltime);
 
             alert(savetime);
 
+
+            var entryDateValue = dayjs(entrydate, "HH:mm");
+            var totaltimeValue = dayjs(totaltime, "HH:mm");
+            
+            var exitDateValue = entryDateValue.add(totaltime.hour(), 'hour').add(totaltime.minute(), 'minute').subtract(savetime,'minute');
+
+            alert(exitDateValue);
             
         } 
 
