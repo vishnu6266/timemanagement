@@ -12,10 +12,10 @@
     <main> 
         <div>
             <p style="text-align:center"><strong>Productivity Calculator</strong></p>
-            <p style="text-align:center"><strong>Entry :&nbsp; <input type="datetime-local" id="entrytime" name="entrytime"></strong></p>
+            <p style="text-align:center"><strong>Entry :&nbsp; <input type="time-local" id="entrytime" name="entrytime" value="08:30"></strong></p>
             <p style="text-align:center"><strong>Total Time :&nbsp; <input type="time" id="totaltime" name="totaltime"></strong></p>
             <p style="text-align:center"><strong>Save Time :&nbsp; <input type="number" id="savetime" name="savetime"></strong></p>
-            <p style="text-align:center"><strong>Exit :&nbsp; <input type="datetime-local" id="exittime" name="exittime"></strong></p>
+            <p style="text-align:center"><strong>Exit :&nbsp; <input type="time-local" id="exittime" name="exittime"></strong></p>
             <p style="text-align:center"><strong>Billable Time :&nbsp; <input type="time" id="billabletime" name="billabletime"></strong></p>
             <p style="text-align:center"><strong>Productivity (%):&nbsp;<input type="productivity" id="productivity" name="productivity" min="1" max="100"></strong></p>
             <p style="text-align:center">&nbsp;</p>
@@ -23,6 +23,7 @@
             <p style="text-align:center">&nbsp;</p>
         </div>    
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script>
 
          function reset() {
@@ -31,7 +32,7 @@
          
          function calculate() {
 
-            const entrydate = new Date(document.querySelector('input[name="entrytime"]').value).toISOString()
+            const entrydate = document.querySelector('input[name="entrytime"]').value;
             const totaltime = document.querySelector('input[name="totaltime"]').value;
             const savetime = document.querySelector('input[name="savetime"]').value;
 
