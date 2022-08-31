@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Website</title>
-    <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <style>
 .without_ampm::-webkit-datetime-edit-ampm-field {
@@ -26,7 +25,7 @@
     <main> 
         <div>
             <p style="text-align:center"><strong>Time Calculator</strong></p>
-            <p style="text-align:center"><strong>Entry :&nbsp; <input type="time" id="entrytime" name="entrytime" value="07:30"></strong></p>
+            <p style="text-align:center"><strong>Entry :&nbsp; <input type="datetime-local" id="entrytime" name="entrytime"></strong></p>
             <p style="text-align:center"><strong>Total Time :&nbsp; <input type="time" id="totaltime" name="totaltime" value="08:00" class="without_ampm"> </strong></p>
             <p style="text-align:center"><strong>Save Time :&nbsp; <input type="number" id="savetime" name="savetime" value="00:40"></strong>&nbsp;minutes</p>
             <p style="text-align:center"><strong>Exit :&nbsp; <input type="time-local" id="exittime" name="exittime"></strong></p>
@@ -47,9 +46,11 @@
          function calculate() {
 
             const entrydate = document.querySelector('input[name="entrytime"]').value;
-            const totaltime = document.querySelector('input[name="totaltime"]').value;
+            //const totaltime = document.querySelector('input[name="totaltime"]').value;
             const savetime = document.querySelector('input[name="savetime"]').value;
 
+            //var entrytime = $('#entrytime').val().split(':');
+            var totaltime = $('#totaltime').val().split(':');
 
             alert(entrydate);
 
@@ -58,16 +59,16 @@
             alert(savetime);
 
 
-            var entryDateValue = dayjs(entrydate, "HH:mm");
-            var totaltimeValue = dayjs(totaltime, "HH:mm");
+            var entryDateValue = dayjs(entrydate);
+            //var totaltimeValue = dayjs(totaltime, "HH:mm");
 
             alert(entryDateValue);
-            alert(totaltimeValue);
+            //alert(totaltimeValue);
             
             
             //var exitDateValue = entryDateValue.add(totaltimeValue.hour(), 'hour').add(totaltimeValue.minute(), 'minute').subtract(savetime,'minute');
 
-            var exitDateValue = entryDateValue.add(totaltimeValue.hour(), 'hour').add(totaltimeValue.minute(), 'minute');
+            var exitDateValue = entryDateValue.add(totaltime[0], 'hour').add(totaltime[1], 'minute');
 
             alert(exitDateValue);
 
