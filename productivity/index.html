@@ -61,9 +61,11 @@
             var entryDateValue = dayjs(entrydate, "HH:mm");
             var totaltimeValue = dayjs(totaltime, "HH:mm");
             
-            var exitDateValue = entryDateValue.add(totaltime.hour(), 'hour').add(totaltime.minute(), 'minute').subtract(savetime,'minute');
+            var exitDateValue = entryDateValue.add(totaltimeValue.hour(), 'hour').add(totaltimeValue.minute(), 'minute').subtract(savetime,'minute');
 
             alert(exitDateValue);
+
+            document.querySelector('input[name="exittime"]').value = exitDateValue;
             
         } 
 
