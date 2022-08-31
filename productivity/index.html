@@ -25,10 +25,12 @@
     <main> 
         <div>
             <p style="text-align:center"><strong>Time Calculator</strong></p>
-            <p style="text-align:center"><strong>Entry :&nbsp; <input type="datetime-local" id="entrydatetime" name="entrydatetime"></strong></p>
-            <p style="text-align:center"><strong>Total Time :&nbsp; <input type="time" id="totaltime" name="totaltime" value="08:00" class="without_ampm"> </strong></p>
-            <p style="text-align:center"><strong>Save Time :&nbsp; <input type="number" id="savetime" name="savetime" value="00:40"></strong>&nbsp;minutes</p>
-            <p style="text-align:center"><strong>Exit :&nbsp; <input type="time-local" id="exittime" name="exittime"></strong></p>
+            <p style="text-align:center"><strong>Entry :&nbsp; <input type="time" id="entrytime" name="entrytime" value="08:00"></strong></p>
+            <p style="text-align:center"><strong>Total Time :&nbsp; <input type="number" id="totaltimehour" name="totaltimehour" value="08"> &nbsp; hours &nbsp; <input type="number" id="totaltimeminute" name="totaltimeminute" value="00"> &nbsp; minutes </strong></p>
+            <p style="text-align:center"><strong>Save Time :&nbsp; <input type="number" id="savetimehour" name="savetimehour" value="08"> &nbsp; hours &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="00"> &nbsp; minutes </strong></p>
+           <!--
+            <p style="text-align:center"><strong>Save Time :&nbsp; <input type="number" id="savetime" name="savetime" value="00:40"></strong>&nbsp;minutes</p>-->
+            <p style="text-align:center"><strong>Exit :&nbsp; <input type="time" id="exittime" name="exittime"></strong></p>-->
             <!--<p style="text-align:center"><strong>Billable Time :&nbsp; <input type="time" id="billabletime" name="billabletime"></strong></p>
             <p style="text-align:center"><strong>Productivity (%):&nbsp;<input type="productivity" id="productivity" name="productivity" min="1" max="100"></strong></p>-->
             <p style="text-align:center">&nbsp;</p>
@@ -45,34 +47,47 @@
          
          function calculate() {
 
-            const entrydatetime = new Date(document.querySelector('input[name="entrydatetime"]').value).toISOString();
-            var totaltime = document.querySelector('input[name="totaltime"]').value.split(':');
-            const savetime = document.querySelector('input[name="savetime"]').value;
+            const entryTime = document.querySelector('input[name="entrytime"]').value.split(':');
+            var totalTimeHour = document.querySelector('input[name="totaltimehour"]').value;
+            var totalTimeMinute = document.querySelector('input[name="totaltimeminute"]').value;
+            var saveTimeHour = document.querySelector('input[name="savetimehour"]').value;
+            var saveTimeMinute = document.querySelector('input[name="savetimeminute"]').value;
 
             //var entrytime = $('#entrytime').val().split(':');
             //var totaltime = $('#totaltime').val().split(':');
 
-            alert(entrydatetime);
+            //alert(entrytime);
 
-            alert(totaltime);
+            //alert(totaltime);
 
-            alert(savetime);
+            //alert(saveTimeInMinutes);
 
+            var entryTimeInMinutes = entryTime[1]*60+entryTime[0];
 
-            var entryDateTimeValue = dayjs(entrydatetime);
+            var totalTimeInMinutes = totalTimeHour*60+totalTimeMinute;
+            var saveTimeInMinutes = saveTimeHour*60+saveTimeMinute;
+
+            var exitTimeInMinutes = entryTimeInMinutes+totalTimeInMinutes-saveTimeInMinutes;
+
+            var exitTimeHour = Math.floor(exitTimeInMinutes/60);
+
+            var exitTimeMinute = exitTimeInMinutes%60;
+
+            //var entryDateTimeValue = dayjs(entrydatetime);
             //var totaltimeValue = dayjs(totaltime, "HH:mm");
 
-            alert(entryDateTimeValue);
+            //alert(entryDateTimeValue);
             //alert(totaltimeValue);
             
             
             //var exitDateValue = entryDateValue.add(totaltimeValue.hour(), 'hour').add(totaltimeValue.minute(), 'minute').subtract(savetime,'minute');
 
-            var exitDateValue = entryDateValue.add(totaltime[0], 'hour').add(totaltime[1], 'minute');
+            //var exitDateValue = entryDateValue.add(totaltime[0], 'hour').add(totaltime[1], 'minute');
 
-            alert(exitDateValue);
 
-            document.querySelector('input[name="exittime"]').value = exitDateValue;
+            alert(exitTimeHour+":"+exitTimeMinute);
+
+            document.querySelector('input[name="exittime"]').value = exitTimeHour+":"+exitTimeMinute;
             
         } 
 
