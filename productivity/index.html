@@ -32,8 +32,8 @@
          function calculate() {
 
             const entrydate = new Date(document.querySelector('input[name="entrytime"]').value).toISOString()
-            const totaltime = document.querySelector('input[type="totaltime"]').value;
-            const savetime = document.querySelector('input[type="savetime"]').value;
+            const totaltime = document.querySelector('input[name="totaltime"]').value;
+            const savetime = document.querySelector('input[name="savetime"]').value;
 
             alert(entrydate+totaltime-savetime);
 
