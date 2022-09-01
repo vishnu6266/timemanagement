@@ -18,6 +18,10 @@
    appearance: none;
    margin: -10px; 
  }
+
+ input[type='number']{
+    width: 80px;
+ } 
     </style>
 
   </head>
@@ -100,7 +104,7 @@
             //var exitDateValue = entryDateValue.add(totaltime[0], 'hour').add(totaltime[1], 'minute');
 
 
-            alert(String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0'));
+            //alert(String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0'));
 
             document.querySelector('input[name="exittime"]').value = String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0');
             
