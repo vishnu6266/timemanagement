@@ -31,7 +31,7 @@
             <p style="text-align:center"><strong>Time Calculator</strong></p>
             <p style="text-align:center"><strong>Entry : </strong>&nbsp; <input type="time" id="entrytime" name="entrytime" value="08:00"></p>
             <p style="text-align:center"><strong>Total Time  </strong> :&nbsp; <input type="number" id="totaltimehour" name="totaltimehour" value="08"> &nbsp; hours &nbsp; <input type="number" id="totaltimeminute" name="totaltimeminute" value="00"> &nbsp; minutes</p>
-            <p style="text-align:center"><strong>Save Time </strong> :&nbsp; <input type="number" id="savetimehour" name="savetimehour" value="08"> &nbsp; hours &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="00"> &nbsp; minutes </p>
+            <p style="text-align:center"><strong>Save Time </strong> :&nbsp; <input type="number" id="savetimehour" name="savetimehour" value="00"> &nbsp; hours &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="30"> &nbsp; minutes </p>
            <!--
             <p style="text-align:center"><strong>Save Time :&nbsp; <input type="number" id="savetime" name="savetime" value="00:40"></strong>&nbsp;minutes</p>-->
             <p style="text-align:center"><strong>Exit : </strong>&nbsp; <input type="time" id="exittime" name="exittime"></p>
@@ -46,7 +46,11 @@
     <script>
 
          function reset() {
-            alert('Reset!')
+            document.querySelector('input[name="exittime"]').value = "08:00";
+            document.querySelector('input[name="totaltimehour"]').value = "08";
+            document.querySelector('input[name="totaltimeminute"]').value = "00";
+            document.querySelector('input[name="savetimehour"]').value = "00";
+            document.querySelector('input[name="savetimeminute"]').value = "30";
          } 
          
          function calculate() {
