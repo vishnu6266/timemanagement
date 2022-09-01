@@ -50,15 +50,18 @@
             //alert(document.querySelector('input[name="entrytime"]').value);
 
             const entryTime = document.querySelector('input[name="entrytime"]').value.split(':');
-            var totalTimeHour = document.querySelector('input[name="totaltimehour"]').value;
-            var totalTimeMinute = document.querySelector('input[name="totaltimeminute"]').value;
-            var saveTimeHour = document.querySelector('input[name="savetimehour"]').value;
-            var saveTimeMinute = document.querySelector('input[name="savetimeminute"]').value;
+            var entryTimeHour = parseInt(entryTime[0]);
+            var entryTimeMinute = parseInt(entryTime[1]);
+            
+            var totalTimeHour = parseInt(document.querySelector('input[name="totaltimehour"]').value);
+            var totalTimeMinute = parseInt(document.querySelector('input[name="totaltimeminute"]').value);
+            var saveTimeHour = parseInt(document.querySelector('input[name="savetimehour"]').value);
+            var saveTimeMinute = parseInt(document.querySelector('input[name="savetimeminute"]').value);
 
 
-            alert (entryTime);
-            alert (totalTimeHour+":"+totalTimeMinute);
-            alert (saveTimeHour+":"+saveTimeMinute);
+            //alert (entryTime);
+            //alert (totalTimeHour+":"+totalTimeMinute);
+            //alert (saveTimeHour+":"+saveTimeMinute);
             
             //var entrytime = $('#entrytime').val().split(':');
             //var totaltime = $('#totaltime').val().split(':');
@@ -69,15 +72,15 @@
 
             //alert(saveTimeInMinutes);
 
-            var entryTimeInMinutes = entryTime[0]*60+entryTime[1];
-            var totalTimeInMinutes = totalTimeHour*60+totalTimeMinute;
-            var saveTimeInMinutes = saveTimeHour*60+saveTimeMinute;
+            var entryTimeInMinutes = (entryTimeHour*60)+entryTimeMinute;
+            var totalTimeInMinutes = (totalTimeHour*60)+totalTimeMinute;
+            var saveTimeInMinutes = (saveTimeHour*60)+saveTimeMinute;
 
             alert (entryTimeInMinutes);
             alert (totalTimeInMinutes);
             alert (saveTimeInMinutes);
 
-            var exitTimeInMinutes = entryTimeInMinutes+totalTimeInMinutes-saveTimeInMinutes;
+            var exitTimeInMinutes = entryTimeInMinutes + totalTimeInMinutes - saveTimeInMinutes;
 
             alert (exitTimeInMinutes);
 
