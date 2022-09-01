@@ -100,9 +100,9 @@
             //var exitDateValue = entryDateValue.add(totaltime[0], 'hour').add(totaltime[1], 'minute');
 
 
-            alert(exitTimeHour+":"+String(exitTimeMinute).padStart(2, '0'));
+            alert(String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0'));
 
-            document.querySelector('input[name="exittime"]').value = exitTimeHour+":"+String(exitTimeMinute).padStart(2, '0');
+            document.querySelector('input[name="exittime"]').value = String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0');
             
         } 
 
