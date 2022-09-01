@@ -76,13 +76,13 @@
             var totalTimeInMinutes = (totalTimeHour*60)+totalTimeMinute;
             var saveTimeInMinutes = (saveTimeHour*60)+saveTimeMinute;
 
-            alert (entryTimeInMinutes);
-            alert (totalTimeInMinutes);
-            alert (saveTimeInMinutes);
+            //alert (entryTimeInMinutes);
+            //alert (totalTimeInMinutes);
+            //alert (saveTimeInMinutes);
 
             var exitTimeInMinutes = entryTimeInMinutes + totalTimeInMinutes - saveTimeInMinutes;
 
-            alert (exitTimeInMinutes);
+            //alert (exitTimeInMinutes);
 
             var exitTimeHour = Math.floor(exitTimeInMinutes/60);
 
@@ -100,9 +100,9 @@
             //var exitDateValue = entryDateValue.add(totaltime[0], 'hour').add(totaltime[1], 'minute');
 
 
-            alert(exitTimeHour+":"+exitTimeMinute);
+            alert(exitTimeHour+":"+String(exitTimeMinute).padStart(2, '0'));
 
-            document.querySelector('input[name="exittime"]').value = exitTimeHour+":"+exitTimeMinute;
+            document.querySelector('input[name="exittime"]').value = exitTimeHour+":"+String(exitTimeMinute).padStart(2, '0');
             
         } 
 
