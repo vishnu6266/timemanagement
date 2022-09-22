@@ -26,21 +26,43 @@
  input[type='time']{
     width: 150px;
  } 
+
+ .container {
+    display: flex;
+    justify-content: center;
+ }
     </style>
 
   </head>
   <body>
     <main> 
-        <div>
-            <p style="text-align:left"><strong>Time Calculator</strong></p>
-            <p style="text-align:left"><strong>Clock In </strong> :&nbsp; <input type="time" id="entrytime" name="entrytime" value="08:00"></p>
-            <p style="text-align:left"><strong>Total Treatment Time </strong> :&nbsp; <input type="number" id="totaltimehour" name="totaltimehour" value="08"> &nbsp; hours &nbsp; <input type="number" id="totaltimeminute" name="totaltimeminute" value="00"> &nbsp; minutes</p>
-            <p style="text-align:left"><strong>Group Time </strong> :&nbsp; <input type="number" id="savetimehour" name="savetimehour" value="00"> &nbsp; hours &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="30"> &nbsp; minutes </p>
-            <p style="text-align:left"><strong>Clock Out : </strong>&nbsp; <input type="time" id="exittime" name="exittime"></p>
-            <p style="text-align:left"><strong>Productivity (%):&nbsp;<input type="number" id="productivity" name="productivity" readonly> &nbsp; %</strong></p>
-            <p style="text-align:center">&nbsp;</p>
+        <div class="container">
+          <div>
+            <p style="text-align:center"><strong>Time Calculator</strong></p>
+            <p> 
+              <span style="text-align:left"><strong>Clock In </strong> :&nbsp;</span>
+              <span style="text-align:right"> <input type="time" id="entrytime" name="entrytime" value="08:00"></span>
+            </p>
+            <p>
+               <span  style="text-align:left"><strong>Total Treatment Time </strong> :&nbsp; </span>
+               <span style="text-align:right"><input type="number" id="totaltimehour" name="totaltimehour" value="08"> &nbsp; hours &nbsp; <input type="number" id="totaltimeminute" name="totaltimeminute" value="00"> &nbsp; minutes</span>
+            </p>
+            <p>
+               <span  style="text-align:left"><strong>Group Time </strong> :&nbsp;</span>
+               <span style="text-align:right"><input type="number" id="savetimehour" name="savetimehour" value="00"> &nbsp; hours &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="30"> &nbsp; minutes</span> 
+            </p>
+            <p> 
+               <span  style="text-align:left"><strong>Clock Out : </strong>&nbsp;</span>
+               <span style="text-align:right"><input type="time" id="exittime" name="exittime"></span>
+            </p>
+            <p> 
+               <span  style="text-align:left"><strong>Productivity (%):</strong>&nbsp;</span>
+               <span style="text-align:right"><input type="number" id="productivity" name="productivity" readonly> &nbsp; %</strong></span>
+            </p>
+            <p>  style="text-align:center">&nbsp;</p>
             <p style="text-align:center"><button type="button" onclick="reset()">Reset</button>&nbsp;&nbsp;&nbsp;<strong><button type="button" onclick="calculate()">Calculate</button></strong></p>
             <p style="text-align:center">&nbsp;</p>
+          </div>  
         </div>    
     </main>
     <script>
@@ -96,11 +118,13 @@
 
             var exitTimeMinute = exitTimeInMinutes%60;
 
-            var productivity = Math.round(((entryTimeInMinutes + totalTimeInMinutes)/exitTimeInMinutes)*100* 100) / 100;
+            var productivityPercentage = totalTimeInMinutes/(totalTimeInMinutes-saveTimeInMinutes);
+
+            var productivity = Math.round(productivityPercentage * 100) / 100;
 
             document.querySelector('input[name="exittime"]').value = String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0');
              
-            document.querySelector('input[name="productivity"]').value = String(productivity);
+            document.querySelector('input[name="productivity"]').value = String(productivity).padStart(2, '0');
         } 
 
     </script>
