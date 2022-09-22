@@ -118,7 +118,7 @@
 
             var exitTimeMinute = exitTimeInMinutes%60;
 
-            var productivityPercentage = totalTimeInMinutes/(totalTimeInMinutes-saveTimeInMinutes);
+            var productivityPercentage = (totalTimeInMinutes/(totalTimeInMinutes-saveTimeInMinutes))*100;
 
             var productivity = Math.round(productivityPercentage * 100) / 100;
 
