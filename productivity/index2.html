@@ -59,9 +59,7 @@
                <span  style="text-align:left"><strong>Group Time </strong> :&nbsp;</span>
                <span style="text-align:right"><input type="number" id="savetimehour" name="savetimehour" value="00"> &nbsp; H &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="30"> &nbsp; m</span> 
             </p>
-            <p>
-              <span style="text-align:right"><input type="range" name="savetime-slider" id="savetime-slider" value="60" min="0" max="300"></span>
-            </p>
+            
             <p> 
                <span  style="text-align:left"><strong>Clock Out : </strong>&nbsp;</span>
                <span style="text-align:right"><input type="time" id="exittime" name="exittime"></span>
@@ -74,9 +72,21 @@
             <p style="text-align:center"><button type="button" onclick="reset()">Reset</button>&nbsp;&nbsp;&nbsp;<strong><button type="button" onclick="calculate()">Calculate</button></strong></p>
             <p style="text-align:center">&nbsp;</p>
           </div>  
-        </div>    
+        </div> 
+        <div class="container">
+          <div>
+            <p>
+              <span style="text-align:right"><input type="range" name="savetime-slider" id="savetime-slider" value="60" min="0" max="300"></span>
+            </p>
+          </div>
+        </div>
     </main>
     <script>
+
+          $( ".savetime-slider" ).slider({
+               orientation : 'vertical'
+          });
+
 
          function reset() {
             document.querySelector('input[name="exittime"]').value = "";
