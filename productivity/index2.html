@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PTime</title>
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css">
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>  
     <style>
 .without_ampm::-webkit-datetime-edit-ampm-field {
    display: none;
@@ -43,6 +46,10 @@
         <div class="container">
           <div>
             <p style="text-align:center"><strong>Time Calculator</strong></p>
+            <div role="main" class="ui-content">
+              <label for="slider-0">Input slider:</label>
+              <input type="range" name="slider-0" id="slider-0" value="60" min="0" max="100">
+            </div>
             <p> 
               <span style="text-align:left"><strong>Clock In </strong> :&nbsp;</span>
               <span style="text-align:right"> <input type="time" id="entrytime" name="entrytime" value="08:00"></span>
