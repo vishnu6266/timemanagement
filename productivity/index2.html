@@ -1,64 +1,139 @@
-<!-- libcoverage.js-->
-<script src="dependencies/libcoverage.js/libcoverage.min.js" charset="utf-8"></script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PTime</title>
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+.without_ampm::-webkit-datetime-edit-ampm-field {
+   display: none;
+ }
+ input[type=time]::-webkit-clear-button {
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   -o-appearance: none;
+   -ms-appearance:none;
+   appearance: none;
+   margin: -10px; 
+ }
 
-<!-- TimeSlider -->
-<script src="build/d3.timeslider.js"></script>
-<script src="build/d3.timeslider.plugins.js"></script>
-<link href="build/d3.timeslider.css" rel="stylesheet" type="text/css" media="all" />
-<script>
-  window.addEventListener('load', function() {
-    // Initialize the TimeSlider
-    slider = new TimeSlider(document.getElementById('d3_timeslider'), {
-      debounce: 50,
-      domain: {
-        start: new Date("2012-01-01T00:00:00Z"),
-        end: new Date("2013-01-01T00:00:00Z"),
-      },
-      brush: {
-        start: new Date("2012-01-05T00:00:00Z"),
-        end: new Date("2012-01-10T00:00:00Z")
-      },
-      datasets: [
-        {
-          id: 'img2012',
-          color: 'red',
-          data: function(start, end, callback) {
-            return callback('img2012', [
-              [ new Date("2012-01-01T12:00:00Z"), new Date("2012-01-01T16:00:00Z") ],
-              [ new Date("2012-01-02T12:00:00Z"), new Date("2012-01-02T16:00:00Z") ],
-              new Date("2012-01-04T00:00:00Z"),
-              new Date("2012-01-05T00:00:00Z"),
-              [ new Date("2012-01-06T12:00:00Z"), new Date("2012-01-26T16:00:00Z") ],
-            ]);
-          }
-        }
-      ]
-    });
+ input[type='number']{
+    width: 40px;
+ } 
 
-    // Register a callback for changing the selected time period
-    document.getElementById('d3_timeslider').addEventListener('selectionChanged', function(e){
-      console.log("Custom event handler on the time slider");
-      console.log(e.detail);
-    });
+ input[type='time']{
+    width: 100px;
+ } 
 
-    // Change the TimeSlider domain, or the selected interval, then reset the
-    // TimeSlider to it's initial state
-    slider.domain(new Date("2011-01-01T00:00:00Z"),  new Date("2013-01-01T00:00:00Z"));
-    slider.select(new Date("2011-02-01T00:00:00Z"),  new Date("2013-02-08T00:00:00Z"))
-    slider.reset();
+ input[type='text']{
+    width: 100px;
+ } 
 
-    // Add a new dataset and remove another one
-    slider.addDataset({
-      id: 'fsc',
-      color: 'green'
-      data: new TimeSlider.Plugin.EOWCS({ url: 'http://neso.cryoland.enveo.at/cryoland/ows', eoid: 'daily_FSC_PanEuropean_Optical', dataset: 'fsc' })
-    });
-    slider.addDataset({
-      id: 'asar',
-      color: 'purple',
-      data: new TimeSlider.Plugin.WMS({ url: 'http://data.eox.at/instance01/ows', eoid: 'ASAR_IMM_L1_view', dataset: 'asar' })
-    })
-    slider.removeDataset('img2012');
-)
-  }, false);
-</script>
+ .container {
+    display: flex;
+    justify-content: center;
+ }
+    </style>
+
+  </head>
+  <body>
+    <main> 
+        <div class="container">
+          <div>
+            <p style="text-align:center"><strong>Time Calculator</strong></p>
+            <p> 
+              <span style="text-align:left"><strong>Clock In </strong> :&nbsp;</span>
+              <span style="text-align:right"> <input type="time" id="entrytime" name="entrytime" value="08:00"></span>
+            </p>
+            <p>
+               <span  style="text-align:left"><strong>Total Treatment Time </strong> :&nbsp; </span>
+               <span style="text-align:right"><input type="number" id="totaltimehour" name="totaltimehour" value="08"> &nbsp; H &nbsp; <input type="number" id="totaltimeminute" name="totaltimeminute" value="00"> &nbsp; m</span>
+            </p>
+            <p>
+               <span  style="text-align:left"><strong>Group Time </strong> :&nbsp;</span>
+               <span style="text-align:right"><input type="number" id="savetimehour" name="savetimehour" value="00"> &nbsp; H &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="30"> &nbsp; m</span> 
+            </p>
+            <p> 
+               <span  style="text-align:left"><strong>Clock Out : </strong>&nbsp;</span>
+               <span style="text-align:right"><input type="time" id="exittime" name="exittime"></span>
+            </p>
+            <p> 
+               <span  style="text-align:left"><strong>Productivity (%):</strong>&nbsp;</span>
+               <span style="text-align:right"><input type="text" id="productivity" name="productivity" readonly> &nbsp; %</strong></span>
+            </p>
+            <p style="text-align:center">&nbsp;</p>
+            <p style="text-align:center"><button type="button" onclick="reset()">Reset</button>&nbsp;&nbsp;&nbsp;<strong><button type="button" onclick="calculate()">Calculate</button></strong></p>
+            <p style="text-align:center">&nbsp;</p>
+          </div>  
+        </div>    
+    </main>
+    <script>
+
+         function reset() {
+            document.querySelector('input[name="exittime"]').value = "";
+            document.querySelector('input[name="productivity"]').value = "";
+            document.querySelector('input[name="totaltimehour"]').value = "08";
+            document.querySelector('input[name="totaltimeminute"]').value = "00";
+            document.querySelector('input[name="savetimehour"]').value = "00";
+            document.querySelector('input[name="savetimeminute"]').value = "30";
+         } 
+         
+         function calculate() {
+
+            //alert(document.querySelector('input[name="entrytime"]').value);
+
+            const entryTime = document.querySelector('input[name="entrytime"]').value.split(':');
+            var entryTimeHour = parseInt(entryTime[0]);
+            var entryTimeMinute = parseInt(entryTime[1]);
+            
+            var totalTimeHour = parseInt(document.querySelector('input[name="totaltimehour"]').value);
+            var totalTimeMinute = parseInt(document.querySelector('input[name="totaltimeminute"]').value);
+            var saveTimeHour = parseInt(document.querySelector('input[name="savetimehour"]').value);
+            var saveTimeMinute = parseInt(document.querySelector('input[name="savetimeminute"]').value);
+
+
+            //alert (entryTime);
+            //alert (totalTimeHour+":"+totalTimeMinute);
+            //alert (saveTimeHour+":"+saveTimeMinute);
+            
+            //var entrytime = $('#entrytime').val().split(':');
+            //var totaltime = $('#totaltime').val().split(':');
+
+            //alert(entryTime);
+
+            //alert(entryTime[1]+":"+entryTime[0]);
+
+            //alert(saveTimeInMinutes);
+
+            var entryTimeInMinutes = (entryTimeHour*60)+entryTimeMinute;
+            var totalTimeInMinutes = (totalTimeHour*60)+totalTimeMinute;
+            var saveTimeInMinutes = (saveTimeHour*60)+saveTimeMinute;
+
+            //alert (entryTimeInMinutes);
+            //alert (totalTimeInMinutes);
+            //alert (saveTimeInMinutes);
+
+            var exitTimeInMinutes = entryTimeInMinutes + totalTimeInMinutes - saveTimeInMinutes;
+
+            //alert (exitTimeInMinutes);
+
+            var exitTimeHour = Math.floor(exitTimeInMinutes/60);
+
+            var exitTimeMinute = exitTimeInMinutes%60;
+
+            var productivityPercentage = (totalTimeInMinutes/(totalTimeInMinutes-saveTimeInMinutes))*100;
+
+            var productivity = Math.round(productivityPercentage * 100) / 100;
+
+            document.querySelector('input[name="exittime"]').value = String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0');
+             
+            document.querySelector('input[name="productivity"]').value = String(productivity).padStart(2, '0');
+        } 
+
+    </script>
+
+
+  </body>
+</html>
