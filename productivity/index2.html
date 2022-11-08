@@ -1,90 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PTime</title>
-    <link rel="icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css">
-    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>  
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>PTime</title>
+   <link rel="icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.css"> 
+   <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+   <script src="//code.jquery.com/mobile/1.5.0-alpha.1/jquery.mobile-1.5.0-alpha.1.min.js"></script>  
+
     <style>
-.without_ampm::-webkit-datetime-edit-ampm-field {
-   display: none;
+
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-container {
+    position: relative;
  }
- input[type=time]::-webkit-clear-button {
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   -o-appearance: none;
-   -ms-appearance:none;
-   appearance: none;
-   margin: -10px; 
- }
+ 
+ .slider-container .slider {
+    position: absolute;
+    z-index: 3;
+    left: 50%;
+    top: 50%;
+    margin: 0;
+    width: 300px;
+    height: 20px;
+    outline: none;
+    transform: rotate(-90deg) translate(-50%, -50%);
+    transform-origin: 0 0;
+  }
 
- input[type='number']{
-    width: 40px;
- } 
-
- input[type='time']{
-    width: 100px;
- } 
-
- input[type='text']{
-    width: 100px;
- } 
-
- .container {
-    display: flex;
-    justify-content: center;
- }
     </style>
 
   </head>
   <body>
-    <main> 
-        <div class="container">
-          <div>
-            <p style="text-align:center"><strong>Time Calculator</strong></p>
-          
-            <p> 
-              <span style="text-align:left"><strong>Clock In </strong> :&nbsp;</span>
-              <span style="text-align:right"> <input type="time" id="entrytime" name="entrytime" value="08:00"></span>
-            </p>
-            <p>
-               <span  style="text-align:left"><strong>Total Treatment Time </strong> :&nbsp; </span>
-               <span style="text-align:right"><input type="number" id="totaltimehour" name="totaltimehour" value="08"> &nbsp; H &nbsp; <input type="number" id="totaltimeminute" name="totaltimeminute" value="00"> &nbsp; m</span>
-            </p>
-            <p>
-               <span  style="text-align:left"><strong>Group Time </strong> :&nbsp;</span>
-               <span style="text-align:right"><input type="number" id="savetimehour" name="savetimehour" value="00"> &nbsp; H &nbsp; <input type="number" id="savetimeminute" name="savetimeminute" value="30"> &nbsp; m</span> 
-            </p>
-            
-            <p> 
-               <span  style="text-align:left"><strong>Clock Out : </strong>&nbsp;</span>
-               <span style="text-align:right"><input type="time" id="exittime" name="exittime"></span>
-            </p>
-            <p> 
-               <span  style="text-align:left"><strong>Productivity (%):</strong>&nbsp;</span>
-               <span style="text-align:right"><input type="text" id="productivity" name="productivity" readonly> &nbsp; %</strong></span>
-            </p>
-            <p style="text-align:center">&nbsp;</p>
-            <p style="text-align:center"><button type="button" onclick="reset()">Reset</button>&nbsp;&nbsp;&nbsp;<strong><button type="button" onclick="calculate()">Calculate</button></strong></p>
-            <p style="text-align:center">&nbsp;</p>
-          </div>  
-          <div>
-            <p>
-              <input type="range" name="savetime-slider" id="savetime-slider" value="60" min="0" max="300">
-            </p>
-          </div>
-        </div>
-    </main>
+  
+   <div class="middle">
+      <div class="slide-container" >
+        <input type="range" name="savetime-slider" class="slider" id="savetime-slider" value="60" min="0" max="300"/>
+      </div>
+   </div>
+
     <script>
-
-          $( ".savetime-slider" ).slider({
-               orientation : 'vertical'
-          });
-
 
          function reset() {
             document.querySelector('input[name="exittime"]').value = "";
