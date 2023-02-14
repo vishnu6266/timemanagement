@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PTime</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link href="./css/timeslider.css" rel="stylesheet" type="text/css"/>
+
+  </head>
+  <body>
+    <div style="margin: 50px 30px;">
+        <div id="slider123" class="time-slider"></div>
+    </div>
+    <p id="messages"></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="./js/timeslider.js"></script>
+    <script type="text/javascript">
+          var current_time = (new Date()).getTime() + ((new Date()).getTimezoneOffset() * 60 * 1000 * -1);
+      $(document).ready(function () {
+        (function () {
+  
+          $('#slider123').TimeSlider({
+            start_timestamp: current_time - 3600 * 12 * 1000,
+            init_cells: [
+              {
+                              '_id': 'c1',
+                              'start': (current_time - (3600 * 7 * 1000) + 1234),
+                              'stop': current_time,
+                              'style': {
+                                  'background-color': '#76C4FF'
+                              }
+                          }
+             
+            ]
+          });
+  
+          })();
+      });
+    </script>
+    <script>
+   
+   function IntToTime(val){
+       var hours = parseInt( val / 60 );
+       var min = val - (hours * 60);
+       var time = hours + ':' + (min < 10 ? '0' + min : min);
+       return time;
+   }
+
+         function reset() {
+            document.querySelector('input[name="exittime"]').value = "";
+            document.querySelector('input[name="productivity"]').value = "";
+            document.querySelector('input[name="totaltimehour"]').value = "08";
+            document.querySelector('input[name="totaltimeminute"]').value = "00";
+            document.querySelector('input[name="savetimehour"]').value = "00";
+            document.querySelector('input[name="savetimeminute"]').value = "30";
+         } 
+         
+         function calculate() {
+
+            //alert(document.querySelector('input[name="entrytime"]').value);
+
+            const entryTime = document.querySelector('input[name="entrytime"]').value.split(':');
+            var entryTimeHour = parseInt(entryTime[0]);
+            var entryTimeMinute = parseInt(entryTime[1]);
+            
+            var totalTimeHour = parseInt(document.querySelector('input[name="totaltimehour"]').value);
+            var totalTimeMinute = parseInt(document.querySelector('input[name="totaltimeminute"]').value);
+            var saveTimeHour = parseInt(document.querySelector('input[name="savetimehour"]').value);
+            var saveTimeMinute = parseInt(document.querySelector('input[name="savetimeminute"]').value);
+
+
+            //alert (entryTime);
+            //alert (totalTimeHour+":"+totalTimeMinute);
+            //alert (saveTimeHour+":"+saveTimeMinute);
+            
+            //var entrytime = $('#entrytime').val().split(':');
+            //var totaltime = $('#totaltime').val().split(':');
+
+            //alert(entryTime);
+
+            //alert(entryTime[1]+":"+entryTime[0]);
+
+            //alert(saveTimeInMinutes);
+
+            var entryTimeInMinutes = (entryTimeHour*60)+entryTimeMinute;
+            var totalTimeInMinutes = (totalTimeHour*60)+totalTimeMinute;
+            var saveTimeInMinutes = (saveTimeHour*60)+saveTimeMinute;
+
+            //alert (entryTimeInMinutes);
+            //alert (totalTimeInMinutes);
+            //alert (saveTimeInMinutes);
+
+            var exitTimeInMinutes = entryTimeInMinutes + totalTimeInMinutes - saveTimeInMinutes;
+
+            //alert (exitTimeInMinutes);
+
+            var exitTimeHour = Math.floor(exitTimeInMinutes/60);
+
+            var exitTimeMinute = exitTimeInMinutes%60;
+
+            var productivityPercentage = (totalTimeInMinutes/(totalTimeInMinutes-saveTimeInMinutes))*100;
+
+            var productivity = Math.round(productivityPercentage * 100) / 100;
+
+            document.querySelector('input[name="exittime"]').value = String(exitTimeHour).padStart(2, '0')+":"+String(exitTimeMinute).padStart(2, '0');
+             
+            document.querySelector('input[name="productivity"]').value = String(productivity).padStart(2, '0');
+        } 
+
+    </script>
+
+
+  </body>
+</html>
