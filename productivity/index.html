@@ -182,7 +182,7 @@
         * Register Service Worker
         */
        navigator.serviceWorker
-           .register('./sw.js', { scope: '/' })
+           .register('./sw.js', { scope: '/timemanagement/productivity/' })
            .then(() => {
                console.log('Service Worker Registered');
            });
