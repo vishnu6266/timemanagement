@@ -1,20 +1,20 @@
 const CACHE_VERSION = 1;
 
 const BASE_CACHE_FILES = [
-    '/manifest.json',
-    '/favicon.png',
+    './manifest.json',
+    './appicons/favicon.ico',
 ];
 
 const OFFLINE_CACHE_FILES = [
-    '/index.html',
+    './index.html',
 ];
 
 const NOT_FOUND_CACHE_FILES = [
-    '/index.html',
+    './index.html',
 ];
 
-const OFFLINE_PAGE = '/index.html';
-const NOT_FOUND_PAGE = '/index.html';
+const OFFLINE_PAGE = './index.html';
+const NOT_FOUND_PAGE = './index.html';
 
 const CACHE_VERSIONS = {
     assets: 'assets-v' + CACHE_VERSION,
