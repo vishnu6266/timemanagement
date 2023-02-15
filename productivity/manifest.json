@@ -1,6 +1,6 @@
 {
-    "name": "Developer for Life",
-    "short_name": "dev4life",
+    "name": "PT Time",
+    "short_name": "pttime",
     "icons": [{
         "src": "/timemanagement/productivity/appicons/favicon-128.png",
         "sizes": "128x128",
@@ -22,7 +22,7 @@
         "sizes": "512x512",
         "type": "image/png"
     }],
-    "start_url": "/timemanagement/productivity/",
+    "start_url": "./",
     "display": "standalone",
     "orientation" : "portrait",
     "background_color": "#FFFFFF",
